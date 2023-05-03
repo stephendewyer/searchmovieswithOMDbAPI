@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import classnames from 'classnames';
 import { usePagination, DOTS } from './usePagination.js';
-import styles from './pagination.module.css';
+import styles from './Pagination.module.css';
 import React from 'react';
 import ArrowLeft from '../../public/images/icons/arrow_left.svg';
 import ArrowRight from '../../public/images/icons/arrow_right.svg';
