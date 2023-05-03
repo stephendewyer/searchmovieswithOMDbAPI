@@ -14,7 +14,7 @@ export default function Index() {
         if (footerContainer.current !== null) {
             setFooterHeight(footerContainer.current.scrollHeight);
         }
-    });
+    }, []);
 
     const [node, setNode] = useState(null);
 
@@ -23,7 +23,7 @@ export default function Index() {
             setNode(node);
         }
     }, []);
-    
+
     useLayoutEffect(() => {
         if (node) {
             const measure = () => {
