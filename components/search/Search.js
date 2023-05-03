@@ -172,7 +172,7 @@ const Search = () => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return fullMovieData.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, fullMovieData, defaultFullMovieData]);
+  }, [currentPage, fullMovieData, defaultFullMovieData, PageSize]);
 
   // load different height states in a variable and set the default height state to "0px"
 
