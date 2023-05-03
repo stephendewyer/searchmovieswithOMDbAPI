@@ -1,0 +1,307 @@
+.search_nav_bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 1rem 1rem 1rem;
+  }
+  
+  .sort_nav_bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 1rem auto;
+  }
+  
+  .search_bar_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .search_bar_input {
+    height: 2.75rem;
+    width: 30rem;
+    border-radius: 0.75rem;
+    font-size: 1.75rem;
+    background-color: #E4FFFF;
+    border-color: #FAEFD9;
+    border-width: 3px;
+    border-style: solid;
+    padding: 0.25rem 1rem 0.25rem 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z'/%3E%3C/svg%3E");
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+  }
+  
+  .search_bar_input:focus {
+    outline: none;
+    border-color: #BBFFFF;
+  }
+  
+  .sort_by_heading {
+    position: relative;
+    margin: auto 1rem auto auto;
+  }
+  
+  .moviesAndMovieDetailsContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .results_container_open {
+    position: relative;
+    width: 100%;
+  }
+  
+  .results_container_closed {
+    position: relative;
+    width: 100%;
+  }
+  
+  .results_open {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .results_closed {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .moviesListContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .moviesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 40rem;
+  }
+  
+  .moviesDetailsContainer_open {
+    position: relative;
+    width: 40rem;
+    margin-right: 0;
+    will-change: margin-right;
+    transition: margin-right 0.3s ease-out;
+  }
+  
+  .moviesDetailsContainer_closed {
+    position: relative;
+    /* IMPORTANT!  make width opposite of margin-right */
+    width: 40rem;
+    margin-right: -40rem;
+    will-change: margin-right;
+    transition: margin-right 0.3s ease-out;
+  }
+  
+  .movieDetails_open {
+    position: relative;
+    padding: 1rem 2rem;
+    box-shadow: 0px 5px 10px 5px rgba(250, 239, 217, 0.35);
+    border-radius: 0.75rem 0 0 0.75rem;
+    transform: translateX(0);
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .movieDetails_closed {
+    position: relative;
+    padding: 1rem 2rem;
+    box-shadow: 0px 5px 10px 5px rgba(250, 239, 217, 0.35);
+    border-radius: 0.75rem 0 0 0.75rem;
+    transform: translateX(100%);
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .close {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    z-index: 5;
+  }
+  
+  .close:before, .close:after {
+    position: absolute;
+    left: 0.938rem;
+    content: ' ';
+    height: 2.063rem;
+    width: 2px;
+    background-color: #C0EACB;
+    transition: background-color 300ms ease-out;
+  }
+  
+  .close:before {
+    transform: rotate(45deg);
+  }
+  
+  .close:after {
+    transform: rotate(-45deg);
+  }
+  
+  .close:hover::before, .close:hover::after {
+    background-color: #FAEFD9;
+  }
+  
+  .movieDetailsList {
+    list-style: none;
+    position: relative;
+    color: #C0EACB;
+  }
+  
+  .moviePosterContainer {
+    max-width: 18rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .movieDetail {
+    text-align: left;
+  }
+  
+  .pagination_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto 2rem auto;
+  }
+  
+  .loading {
+    text-align: center;
+    width: 100%;
+  }
+  
+  @media all and (max-width:900px){
+  
+    .search_nav_bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem;
+    }
+  
+    .search_bar_form {
+      width: 100%;
+    }
+  
+    .search_bar_input {
+      height: 2.75rem;
+      width: 100%;
+      border-radius: 0.75rem;
+      font-size: 1.25rem;
+      background-color: #E4FFFF;
+      border-color: #FAEFD9;
+      border-width: 2px;
+      border-style: solid;
+      padding: 0.25rem 1rem 0.25rem 2rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z'/%3E%3C/svg%3E");
+      background-size: 1rem;
+      background-repeat: no-repeat;
+      background-position: 0.5rem center;
+    }
+  
+    .results_container_open {
+      position: relative;
+      width: 100%;
+      will-change: margin-left;
+      transition: margin-left 0.3s ease-out;
+    }
+    
+    .results_container_closed {
+      position: relative;
+      width: 100%;
+      margin-left: -100%;
+      will-change: margin-left;
+      transition: margin-left 0.3s ease-out;
+    }
+    
+    .results_open {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      transform: translateX(0);
+      will-change: transform;
+      transition: transform 0.3s ease-out;
+      height: 100%;
+      left: 0; 
+      right: 0;
+    }
+    
+    .results_closed {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      transform: translateX(-100%);
+      will-change: transform;
+      transition: transform 0.3s ease-out;
+      height: 100%;
+    }
+  
+    .moviesContainer {
+      min-width: auto;
+      width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  
+    .moviesDetailsContainer_open {
+      position: relative;
+      width: 100%;
+      margin-right: 0;
+    }
+    
+    .moviesDetailsContainer_closed {
+      position: relative;
+      /* IMPORTANT!  make width opposite of margin-right */
+      width: 100%;
+      margin-right: -100%;
+    }
+  
+    .movieDetails_open {
+      position: relative;
+      left: 1rem;
+      padding: 1rem;
+    }
+    
+    .movieDetails_closed {
+      position: relative;
+      margin-left: 1rem;
+      padding: 1rem;
+    }
+  
+    .close {
+      left: 0.75rem;
+      top: 0.75rem;
+      height: 1.5rem;
+    }
+    
+    .close:before, .close:after {
+      left: 0.75rem;
+      height: 1.35rem;
+    }
+  
+    .pagination_bar {
+      margin: 0.5rem auto 1rem auto;
+    }
+    
+  }

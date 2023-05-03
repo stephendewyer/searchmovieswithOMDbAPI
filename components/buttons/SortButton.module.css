@@ -1,0 +1,52 @@
+.sort_button {
+    background-color: transparent;
+    border: 2px solid #FAEFD9;
+    display: inline-block;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    color: #FAEFD9;
+    font-size: 1.25rem;
+    margin: auto 0.5rem auto auto;
+    cursor: pointer;
+    transition: all 300ms ease-out;
+}
+
+.sort_button_active {
+    background-color: #C0EACB;
+    color: #1D1C25;
+    border: 2px solid #C0EACB;
+    display: inline-block;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    margin: auto 0.5rem auto auto;
+    cursor: pointer;
+    transition: all 300ms ease-out;
+}
+
+.sort_button_active:hover {
+    border-color: #FAEFD9;
+    background-color: #FAEFD9;
+}
+
+.sort_button:hover {
+    border-color: #C0EACB;
+    color: #C0EACB;
+    transition: all 300ms ease-out;
+}
+
+@media all and (max-width:900px){
+
+    .sort_button {
+        padding: 0.35rem 0.75rem;
+        font-size: 1rem;
+        margin: auto 0.25rem auto auto;
+    }
+
+    .sort_button_active {
+        padding: 0.35rem 0.75rem;
+        font-size: 1rem;
+        margin: auto 0.25rem auto auto;
+    }
+
+}

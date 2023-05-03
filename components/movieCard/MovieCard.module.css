@@ -1,0 +1,77 @@
+.movieCardContainer {
+    position: relative;
+    width: 24rem;
+    padding: 1rem 2rem;
+    border-radius: 0.313rem;
+    cursor: pointer;
+    margin: 0 auto 1rem auto;
+    transition: all 300ms ease-out;
+}
+
+.movieCardContainerHovered {
+    position: relative;
+    width: 24rem;
+    padding: 1rem 2rem;
+    box-shadow: 0 0.313rem 0.625rem 0.313rem rgba(250, 239, 217, 0.35);
+    border-radius: 0.313rem;
+    cursor: pointer;
+    margin: 0 auto 1rem auto;
+}
+
+.cardSelected {
+    position: relative;
+    width: 24rem;
+    padding: 1rem 2rem;
+    background: #FAEFD9;
+    border-radius: 0.313rem;
+    cursor: pointer;
+    box-shadow: 0 0.313rem 0.625rem 0.313rem rgba(250, 239, 217, 0.35);
+    color: #1D1C25;
+    margin: 0 auto 1rem auto;
+}
+
+.cardSelected > ul > li > h2 {
+    color: #1D1C25;
+}
+
+.movieData {
+    list-style: none;
+}
+
+.IMDb_rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.star {
+    width: 1.75rem;
+    margin: auto auto auto 0.5rem;
+}
+
+@media all and (max-width:900px){
+
+    .movieCardContainer {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        margin: 0 0 1rem 0;
+    }
+
+    .movieCardContainerHovered {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        margin: 0 0 1rem 0;
+    }
+    
+    .cardSelected {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        margin: 0 0 1rem 0;
+    }
+
+    .star {
+        width: 1.5rem;
+        margin: auto auto auto 0.5rem;
+    }
+
+}
