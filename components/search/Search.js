@@ -1,8 +1,10 @@
-import { Fragment, useState, useMemo, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
+import { Fragment, useState, useMemo, useEffect, useRef} from 'react';
 import SortButton from '../buttons/SortButton.js';
 import MovieCard from '../movieCard/MovieCard.js';
 import Pagination from '../pagination/Pagination.js';
+import MissingMoviePoster from '../../public/images/movie_poster_missing.jpg';
 import styles from './Search.module.css';
+import Image from 'next/image';
 
 const Search = () => {
 
@@ -52,6 +54,7 @@ const Search = () => {
         const searchResponse = await fetch(searchURL);
         const movieData =  await searchResponse.json();
         setData(movieData.Search);
+        setCurrentPage(1);
       } catch (error) {
         console.log(error);
       } finally {
@@ -134,90 +137,43 @@ const Search = () => {
     setSortByRating(false);
   }
 
+  console.log(`sort by year ${sortByYear}`);
+  console.log(`sort by length ${sortByLength}`);
+  console.log(`sort by rating ${sortByRating}`);
+
+  // begin sort buttons 
 
   useEffect(() => {
     if (sortByYear) {
       // IMPORTANT!  React will think javaScipt data object is the same without using the spread operator to create a new array. Use the spread operator to create a new array.
-      setSortDataByYear([...fullMovieData].sort((a, b) => Number(b.Year) - Number(a.Year)));
-      setFullMovieData([...fullMovieData].sort((a, b) => Number(b.Year) - Number(a.Year)));
-    } else {
-      setFullMovieData([...defaultFullMovieData]);
-    }
-  }, [sortByYear, defaultFullMovieData]);
-
-
-  useEffect(() => {
-    if (sortByRating) {
+      setSortDataByYear([...defaultFullMovieData].sort((a, b) => Number(b.Year) - Number(a.Year)));
+      setFullMovieData([...defaultFullMovieData].sort((a, b) => Number(b.Year) - Number(a.Year)));
+    } else if (sortByRating) {
       // console.log(`sort by rating ${sortByRating}`)
-      setSortDataByRating([...fullMovieData].sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating)));
-      setFullMovieData([...fullMovieData].sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating)));
-    } else {
-      setFullMovieData([...defaultFullMovieData]);
-    }
-  }, [sortByRating, defaultFullMovieData]);
-
-  useEffect(() => {
-    if (sortByLength) {
+      setSortDataByRating([...defaultFullMovieData].sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating)));
+      setFullMovieData([...defaultFullMovieData].sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating)));
+    } else if (sortByLength) {
       // console.log(`sort by length ${sortByLength}`)
-      setSortDataByLength([...fullMovieData].sort((a, b) => Number(b.Runtime.substring(0, b.Runtime.length -4)) - Number(a.Runtime.substring(0, a.Runtime.length -4))));
-      setFullMovieData([...fullMovieData].sort((a, b) => Number(b.Runtime.substring(0, b.Runtime.length -4)) - Number(a.Runtime.substring(0, a.Runtime.length -4))));
+      setSortDataByLength([...defaultFullMovieData].sort((a, b) => Number(b.Runtime.substring(0, b.Runtime.length -4)) - Number(a.Runtime.substring(0, a.Runtime.length -4))));
+      setFullMovieData([...defaultFullMovieData].sort((a, b) => Number(b.Runtime.substring(0, b.Runtime.length -4)) - Number(a.Runtime.substring(0, a.Runtime.length -4))));
     } else {
       setFullMovieData([...defaultFullMovieData]);
     }
-  }, [sortByLength, defaultFullMovieData]);
+  }, [sortByYear, sortByRating, sortByLength, defaultFullMovieData]);
 
   // end sort buttons
 
+  // begin setting the pagination pages with the movie data
+
   const moviesData = useMemo(() => {
+    console.log(fullMovieData)
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return fullMovieData.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, fullMovieData, defaultFullMovieData, PageSize]);
 
-  // load different height states in a variable and set the default height state to "0px"
+  // end setting the pagination pages with the movie data
 
-  const [minHeight, setMinHeight] = useState(0);    
-
-  // calculate the height the movie details content 
-
-  // store the referenced element in a variable
-
-  const movieDetailsContentContainer = useRef(null);
-
-  // get 'height' after the initial render of the movie detail and every time the movie detail changes
-
-  useEffect(() => {
-      // get current scrollHeight data on element with ref only if value is contained in the variable
-      if (movieDetailsContentContainer.current !== null) {
-        setMinHeight(movieDetailsContentContainer.current.scrollHeight);
-      }
-  }, [activeMovieCardID]);
-
-  // update the height when window resizes
-
-  // *IMPORTANT* use useCallback and not useEffect to ensure that even if a child component displays the measured node later (e.g. in response to a click), we still get notified about it in the parent component and can update the measurements.
-
-  const [node, setNode] = useState(null);
-  const measuredRef = useCallback(node => {
-      if (node !== null) {
-          setNode(node);
-      }
-  }, [activeMovieCardID]);
-
-  // *IMPORTANT* use useLayoutEffect for synchronous rendering in the client. DO NOT USE useEffect, which uses asynchronous rendering
-
-  useLayoutEffect(() => {
-      if (node) {
-          const measure = () => {
-            setMinHeight(node.getBoundingClientRect().height + 20);
-          }
-          window.addEventListener("resize", measure );
-          return () => {
-              window.removeEventListener("resize", measure );
-          };
-     }
-  }, [node]);
-  
   return (
       <Fragment>
         <div className={styles.search_nav_bar}>
@@ -264,7 +220,9 @@ const Search = () => {
             </SortButton>
           </div>
         </div>
-        <section className={styles.moviesAndMovieDetailsContainer} style={{ 'minHeight': `${minHeight}px` }}>
+        <section 
+          className={styles.moviesAndMovieDetailsContainer} 
+        >
           <div className={(activeMovieCardID) ? styles.results_container_closed : styles.results_container_open}>
             <div className={(activeMovieCardID) ? styles.results_closed : styles.results_open}>
               {isLoading && 
@@ -296,17 +254,13 @@ const Search = () => {
             </div>
           </div>
           {(!isLoading) &&
-              <div 
-                className={(activeMovieCardID) ? styles.moviesDetailsContainer_open : styles.moviesDetailsContainer_closed } 
-                ref={movieDetailsContentContainer}
-              >
+              <div className={(activeMovieCardID) ? styles.moviesDetailsContainer_open : styles.moviesDetailsContainer_closed }>
               {moviesData.map((movie, i) => {
                 if (movie.imdbID === activeMovieCardID) {
                   return (
                     <aside 
                       key={i}
                       className={styles.movieDetails_open} 
-                      ref={measuredRef}
                     >
                       <a className={styles.close} onClick={() => closeClickHandler(movie, i)} aria-label="close movie detail"/>
                       <dl 
@@ -314,7 +268,12 @@ const Search = () => {
                         className={styles.movieDetailsList}
                       >
                         <dd className={styles.moviePosterContainer}>
-                          <img src={movie.Poster} alt="movie poster" className={styles.moviePoster}/>
+                          {(movie.Poster && (movie.Poster !== "N/A")) ? 
+                            <img src={movie.Poster} alt="movie poster" className={styles.moviePoster}/> 
+                            :
+                            <Image src={MissingMoviePoster} alt="missing movie poster" priority/>
+                          }
+                          
                         </dd>
                         <dt>
                           <h3>plot</h3>
