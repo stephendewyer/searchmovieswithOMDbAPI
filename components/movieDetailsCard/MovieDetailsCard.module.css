@@ -83,6 +83,7 @@
     max-width: 18rem;
     width: 100%;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .movieDetailHeading {
@@ -117,6 +118,13 @@
     .movieDetails_closed {
         position: relative;
         padding: 1rem;
+    }
+
+    .moviePosterContainer {
+        max-width: 18rem;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 2rem;
     }
     
     .close {
