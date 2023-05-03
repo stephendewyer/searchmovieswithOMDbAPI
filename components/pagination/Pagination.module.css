@@ -41,6 +41,10 @@
     color: rgba(224,217,217,0.5);
 }
 
+.disabled > .arrow > img {
+    opacity: 25%;
+}
+
 .pagination_item.disabled:hover {
     background-color: transparent;
     cursor: default;

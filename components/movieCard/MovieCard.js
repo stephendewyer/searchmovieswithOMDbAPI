@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Star from '../../public/images/star.png';
 import styles from './MovieCard.module.css';
 import { useState } from 'react';
 import classnames from 'classnames';
@@ -37,9 +36,6 @@ const MovieCard = (props) => {
                 </li>
                 <li className={styles.IMDb_rating}>
                     IMDb rating: {props.movieData.imdbRating}
-                    <div className={styles.star}>
-                        <Image src={Star} alt="star" />
-                    </div>
                 </li>
             </ul>
         </div>

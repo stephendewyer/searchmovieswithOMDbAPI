@@ -88,96 +88,6 @@
     min-width: 40rem;
   }
   
-  .moviesDetailsContainer_open {
-    position: relative;
-    width: 40rem;
-    margin-right: 0;
-    will-change: margin-right;
-    transition: margin-right 0.3s ease-out;
-  }
-  
-  .moviesDetailsContainer_closed {
-    position: relative;
-    /* IMPORTANT!  make width opposite of margin-right */
-    width: 40rem;
-    margin-right: -40rem;
-    will-change: margin-right;
-    transition: margin-right 0.3s ease-out;
-  }
-  
-  .movieDetails_open {
-    position: relative;
-    padding: 1rem 2rem;
-    box-shadow: 0px 5px 10px 5px rgba(250, 239, 217, 0.35);
-    border-radius: 0.75rem 0 0 0.75rem;
-    transform: translateX(0);
-    will-change: transform;
-    transition: transform 0.3s ease-out;
-    text-align: center;
-    width: 100%;
-  }
-  
-  .movieDetails_closed {
-    position: relative;
-    padding: 1rem 2rem;
-    box-shadow: 0px 5px 10px 5px rgba(250, 239, 217, 0.35);
-    border-radius: 0.75rem 0 0 0.75rem;
-    transform: translateX(100%);
-    will-change: transform;
-    transition: transform 0.3s ease-out;
-    text-align: center;
-    width: 100%;
-  }
-  
-  .close {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
-    z-index: 5;
-  }
-  
-  .close:before, .close:after {
-    position: absolute;
-    left: 0.938rem;
-    content: ' ';
-    height: 2.063rem;
-    width: 2px;
-    background-color: #C0EACB;
-    transition: background-color 300ms ease-out;
-  }
-  
-  .close:before {
-    transform: rotate(45deg);
-  }
-  
-  .close:after {
-    transform: rotate(-45deg);
-  }
-  
-  .close:hover::before, .close:hover::after {
-    background-color: #FAEFD9;
-  }
-  
-  .movieDetailsList {
-    list-style: none;
-    position: relative;
-    color: #C0EACB;
-  }
-  
-  .moviePosterContainer {
-    max-width: 18rem;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
-  .movieDetail {
-    text-align: left;
-  }
-  
   .pagination_bar {
     display: flex;
     flex-direction: row;
@@ -263,43 +173,7 @@
       padding-left: 1rem;
       padding-right: 1rem;
     }
-  
-    .moviesDetailsContainer_open {
-      position: relative;
-      width: 100%;
-      margin-right: 0;
-    }
     
-    .moviesDetailsContainer_closed {
-      position: relative;
-      /* IMPORTANT!  make width opposite of margin-right */
-      width: 100%;
-      margin-right: -100%;
-    }
-  
-    .movieDetails_open {
-      position: relative;
-      left: 1rem;
-      padding: 1rem;
-    }
-    
-    .movieDetails_closed {
-      position: relative;
-      margin-left: 1rem;
-      padding: 1rem;
-    }
-  
-    .close {
-      left: 0.75rem;
-      top: 0.75rem;
-      height: 1.5rem;
-    }
-    
-    .close:before, .close:after {
-      left: 0.75rem;
-      height: 1.35rem;
-    }
-  
     .pagination_bar {
       margin: 0.5rem auto 1rem auto;
     }
