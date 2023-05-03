@@ -137,10 +137,6 @@ const Search = () => {
     setSortByRating(false);
   }
 
-  console.log(`sort by year ${sortByYear}`);
-  console.log(`sort by length ${sortByLength}`);
-  console.log(`sort by rating ${sortByRating}`);
-
   // begin sort buttons 
 
   useEffect(() => {
@@ -166,7 +162,6 @@ const Search = () => {
   // begin setting the pagination pages with the movie data
 
   const moviesData = useMemo(() => {
-    console.log(fullMovieData)
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return fullMovieData.slice(firstPageIndex, lastPageIndex);
