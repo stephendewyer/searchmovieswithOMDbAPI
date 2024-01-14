@@ -22,6 +22,8 @@ const Pagination = (props) => {
         pageSize
     });
 
+    console.log(totalCount)
+
     // if there are less than 2 items in pagination range, the component will not render
 
     if (currentPage === 0 || paginationRange.length < 2) {
